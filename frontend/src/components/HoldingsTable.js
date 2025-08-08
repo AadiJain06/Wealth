@@ -7,17 +7,6 @@ const HoldingsTable = ({ holdings }) => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [filterType, setFilterType] = useState('all');
 
-  if (!holdings) {
-    return (
-      <div className="bg-dark-card rounded-lg shadow-sm border border-dark p-6">
-        <div className="animate-pulse">
-          <div className="h-6 bg-dark-border rounded w-1/3 mb-4"></div>
-          <div className="h-64 bg-dark-border rounded"></div>
-        </div>
-      </div>
-    );
-  }
-
   // Filter options
   const filterOptions = [
     { value: 'all', label: 'All Holdings' },
@@ -30,6 +19,9 @@ const HoldingsTable = ({ holdings }) => {
 
   // Filter and sort holdings
   const filteredAndSortedHoldings = useMemo(() => {
+    if (!holdings) return [];
+    
+    let filtered = holdings.filter(holding => {
     let filtered = holdings.filter(holding => {
       const matchesSearch = holding.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           holding.symbol.toLowerCase().includes(searchTerm.toLowerCase());
@@ -106,6 +98,18 @@ const HoldingsTable = ({ holdings }) => {
     if (sortField !== field) return '↕';
     return sortDirection === 'asc' ? '↑' : '↓';
   };
+
+  // Show loading state if no holdings
+  if (!holdings) {
+    return (
+      <div className="bg-dark-card rounded-lg shadow-sm border border-dark p-6">
+        <div className="animate-pulse">
+          <div className="h-6 bg-dark-border rounded w-1/3 mb-4"></div>
+          <div className="h-64 bg-dark-border rounded"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
