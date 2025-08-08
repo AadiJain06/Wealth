@@ -65,13 +65,13 @@ A modern portfolio analytics dashboard built with React frontend and Node.js bac
    ```
 
 4. **Start the application**
-   ```bash
+```bash
    # Start backend (from backend directory)
    npm start
    
    # Start frontend (from frontend directory)
-   npm start
-   ```
+npm start
+```
 
    Or use the provided scripts:
    ```bash
@@ -89,15 +89,15 @@ A modern portfolio analytics dashboard built with React frontend and Node.js bac
 #### Frontend Deployment (GitHub Pages)
 
 1. **Update package.json**
-   ```json
-   {
+```json
+{
      "homepage": "https://yourusername.github.io/your-repo-name",
      "scripts": {
        "predeploy": "npm run build",
        "deploy": "gh-pages -d build"
-     }
-   }
-   ```
+  }
+}
+```
 
 2. **Install gh-pages**
    ```bash

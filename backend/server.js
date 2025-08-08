@@ -8,6 +8,7 @@ const { portfolioData, calculatePortfolioMetrics } = require('./data/sampleData'
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const HOST = '0.0.0.0'; // Bind to all interfaces for Railway
 
 // Middleware
 app.use(helmet());
@@ -234,6 +235,21 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Root endpoint for testing
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Portfolio Analytics API is running!',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: '/api/health',
+      holdings: '/api/portfolio/holdings',
+      allocation: '/api/portfolio/allocation',
+      performance: '/api/portfolio/performance',
+      summary: '/api/portfolio/summary'
+    }
+  });
+});
+
 // 404 handler for undefined routes
 app.use('*', (req, res) => {
   res.status(404).json({
@@ -246,10 +262,10 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Portfolio Analytics API running on port ${PORT}`);
-  console.log(`📊 API endpoints available at http://localhost:${PORT}/api/`);
-  console.log(`🏥 Health check: http://localhost:${PORT}/api/health`);
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 Portfolio Analytics API running on ${HOST}:${PORT}`);
+  console.log(`📊 API endpoints available at http://${HOST}:${PORT}/api/`);
+  console.log(`🏥 Health check: http://${HOST}:${PORT}/api/health`);
 });
 
 module.exports = app;
