@@ -22,7 +22,6 @@ const HoldingsTable = ({ holdings }) => {
     if (!holdings) return [];
     
     let filtered = holdings.filter(holding => {
-    let filtered = holdings.filter(holding => {
       const matchesSearch = holding.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           holding.symbol.toLowerCase().includes(searchTerm.toLowerCase());
       
