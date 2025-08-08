@@ -7,9 +7,7 @@
     "install-all": "cd backend && npm install && cd ../frontend && npm install",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
     "start": "cd backend && npm start",
-    "build": "cd frontend && npm run build",
-    "test": "cd backend && npm test && cd ../frontend && npm test",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "test": "cd backend && npm test && cd ../frontend && npm test"
   },
   "keywords": [
     "portfolio",
