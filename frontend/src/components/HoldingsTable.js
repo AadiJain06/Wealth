@@ -7,7 +7,6 @@ const HoldingsTable = ({ holdings }) => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [filterType, setFilterType] = useState('all');
 
-  // Filter options
   const filterOptions = [
     { value: 'all', label: 'All Holdings' },
     { value: 'gainers', label: 'Top Gainers' },
@@ -17,7 +16,6 @@ const HoldingsTable = ({ holdings }) => {
     { value: 'small-cap', label: 'Small Cap' }
   ];
 
-  // Filter and sort holdings
   const filteredAndSortedHoldings = useMemo(() => {
     if (!holdings) return [];
     
@@ -27,7 +25,6 @@ const HoldingsTable = ({ holdings }) => {
       
       if (!matchesSearch) return false;
 
-      // Apply type filter
       switch (filterType) {
         case 'gainers':
           return holding.gainLoss >= 0;
@@ -44,7 +41,6 @@ const HoldingsTable = ({ holdings }) => {
       }
     });
 
-    // Sort holdings
     filtered.sort((a, b) => {
       let aValue, bValue;
       
@@ -111,12 +107,10 @@ const HoldingsTable = ({ holdings }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header with Search and Filter */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
         <h2 className="text-xl font-semibold text-text-primary">Portfolio Holdings</h2>
         
         <div className="flex items-center space-x-4">
-          {/* Filter Dropdown */}
           <div className="flex items-center space-x-2">
             <select
               value={filterType}
@@ -131,7 +125,6 @@ const HoldingsTable = ({ holdings }) => {
             </select>
           </div>
 
-          {/* Search Bar */}
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg className="h-4 w-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -147,14 +140,12 @@ const HoldingsTable = ({ holdings }) => {
             />
           </div>
 
-          {/* Holdings Count */}
           <span className="text-text-secondary text-sm">
             {filteredAndSortedHoldings.length} of {holdings.length} holdings
           </span>
         </div>
       </div>
 
-      {/* Table */}
       <div className="bg-dark-card rounded-lg border border-dark overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-dark">
