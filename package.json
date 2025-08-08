@@ -4,7 +4,7 @@
   "description": "Portfolio Analytics Dashboard - Full Stack Application",
   "main": "index.js",
   "scripts": {
-    "start": "cd backend && npm start",
+    "start": "cd backend && npm install --production=false && npm start",
     "install-all": "cd backend && npm install && cd ../frontend && npm install",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
     "test": "cd backend && npm test && cd ../frontend && npm test"
